@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
+    <script
+      src="https://kit.fontawesome.com/48c0966d39.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <input
+      type="text"
+      name="search"
+      id="cityNameInput"
+      placeholder="Search for a city ..."
+    />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span onclick="fetchCityData()">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </span>
+    <div class="city-container"></div>
+    <script id="city-data" type="text/x-handlebars-template">
+      {{#each cities}}
+        <div class="result">
+          <div class="weather" data-name="{{name}}">
+            {{#if newCity}}
+              <i class="fa-solid fa-plus plus"></i>
+            {{else}}
+              <i class="fa-sharp fa-solid fa-minus minus"></i>
+            {{/if}}
+            {{temperature}}&deg;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <img
+              src="https://openweathermap.org/img/wn/{{conditionPic}}@2x.png"
+            />
+            <br /><br />
+            {{name}}
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {{condition}}
+          </div>
+
+        </div>
+        <br />
+        <br />
+      {{/each}}
+    </script>
+    <script src="render.js"></script>
+    <script src="apiManager.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
